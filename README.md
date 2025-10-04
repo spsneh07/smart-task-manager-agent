@@ -17,13 +17,11 @@ The project uses a three-step n8n workflow:
 ## 📸 Screenshots
 
 ### The n8n Workflow
-![My n8n Workflow](name-of-your-workflow-screenshot.png)
+![My n8n Workflow]<img width="994" height="556" alt="image" src="https://github.com/user-attachments/assets/ce640a4a-eb56-4068-bc4c-5be028b1dfd0" />
 
 ### Sample Calendar Event
-![Sample Event](name-of-your-event-screenshot.png)
+![Sample Event](<img width="1520" height="757" alt="image" src="https://github.com/user-attachments/assets/9d88139d-fe7f-4a8b-97d0-ca84bd60a876" />
+)
 
 ---
 
-*To add your screenshots, make sure you replace `name-of-your-workflow-screenshot.png` with the actual filename of the screenshot you uploaded.*
-
-After editing, click **"Commit changes"**. Your project is now complete and on GitHub!
