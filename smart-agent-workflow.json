@@ -1,0 +1,135 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        0
+      ],
+      "id": "bafe631c-2d12-453c-afb9-d2da1182ff79",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "AXGQ031Z35UFIynZ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful scheduling assistant who is an expert at extracting structured data. Respond ONLY with a JSON object.",
+              "role": "system"
+            },
+            {
+              "content": "=Today's date is October 4, 2025. The date in the JSON MUST be in YYYY-MM-DD format. Extract the title, date, and startTime from the following text: {{$json.text}}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        160,
+        -160
+      ],
+      "id": "d4c2da52-a420-4f89-9c9f-07f4b78a905b",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "hQZnHm4sJuqdsFEn",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "novaxgaming0709@gmail.com",
+          "mode": "list",
+          "cachedResultName": "novaxgaming0709@gmail.com"
+        },
+        "start": "={{DateTime.fromISO($('Message a model').json.message.content.date + 'T' + $('Message a model').json.message.content.startTime).toISO()}}",
+        "end": "={{DateTime.fromISO($('Message a model').json.message.content.date + 'T' + $('Message a model').json.message.content.startTime).plus({ hours: 1 }).toISO()}}",
+        "additionalFields": {
+          "attendees": [
+            "novaxgaming0709@gmail.com"
+          ],
+          "summary": "{{$('Message a model').json.message.content.title}}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        432,
+        0
+      ],
+      "id": "797a78d5-da83-4966-8d49-c375ad71a354",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "92I2FBGhAHM1WKOO",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bab0ce26-886f-4641-850f-0ed8a7ddd72f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b828bba0a18dc6ad7d16350e56ce7cc8284a25a1f7df7ec8c429abc73860f969"
+  },
+  "id": "mDF3CQvxpWoktxXm",
+  "tags": []
+}
