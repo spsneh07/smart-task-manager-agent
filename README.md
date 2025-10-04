@@ -20,8 +20,7 @@ The project uses a three-step n8n workflow:
 ![My n8n Workflow]<img width="994" height="556" alt="image" src="https://github.com/user-attachments/assets/ce640a4a-eb56-4068-bc4c-5be028b1dfd0" />
 
 ### Sample Calendar Event
-![Sample Event](<img width="1520" height="757" alt="image" src="https://github.com/user-attachments/assets/9d88139d-fe7f-4a8b-97d0-ca84bd60a876" />
-)
+![Sample Event]<img width="1520" height="757" alt="image" src="https://github.com/user-attachments/assets/9d88139d-fe7f-4a8b-97d0-ca84bd60a876" />
 
 ---
 
